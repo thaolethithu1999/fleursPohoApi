@@ -23,18 +23,6 @@ const getFlowerById = (req, res) => {
     }
 }
 
-
-// const searchFlowers = (req, res) => {
-//     try {
-        
-//     } catch (error) {
-//         res.status(500).json({err: error.message, flowers: null});
-//     }
-// }
-
-
-
-
 module.exports = { 
     getFlowers, 
     getFlowerById, 
