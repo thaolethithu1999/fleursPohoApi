@@ -4,10 +4,10 @@ const getProducts = (req, res) => {
     try {
         client.query("select * from products", (err, data) => {
             if(err) throw err;
-            res.status(200).json({err: null, flowers: data.rows});
+            res.status(200).json({err: null, products: data.rows});
         });
     } catch (error) {
-        res.status(500).json({err: error.message, flowers: null});
+        res.status(500).json({err: error.message, products: null});
     }
 }
 
@@ -16,10 +16,10 @@ const getProductById = (req, res) => {
         const {id} = req.params;
         client.query(`select * from products where id=$1`, [id], (err, data) => {
             if(err) throw err;
-            res.status(200).json({err: null, flower: data.rows[0]});
+            res.status(200).json({err: null, product: data.rows[0]});
         })
     } catch (error) {
-        res.status(500).json({err: error.message, flower: null});
+        res.status(500).json({err: error.message, product: null});
     }
 }
 
