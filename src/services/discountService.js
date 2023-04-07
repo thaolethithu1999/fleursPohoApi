@@ -2,8 +2,8 @@ const client = require("../db");
 
 const getDiscountByFlowerId = (req, res) => {
     try {
-        const { flower_id } = req.params;
-        client.query(`select * from discount where flower_id=$1`, [flower_id], (err, data) => {
+        const { product_id } = req.params;
+        client.query(`select * from discount where product_id=$1`, [product_id], (err, data) => {
             if(err) throw err;
             if(data.rowCount < 1) {
                 res.status(500).json({err: "not have discount", discount: null});

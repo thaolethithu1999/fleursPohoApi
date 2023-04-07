@@ -28,7 +28,7 @@ const addUser = (req, res) => {
                     }
                 });
             if (!checkExist) {
-                const id = Math.floor(Math.random() * (999 - 100 + 1) + 100);;
+                const id = Math.floor(Math.random() * (999 - 100 + 1) + 100);
                 console.log(id);
 
                 client.query(`insert into users values($1,$2,$3,$4,$5,$6,$7,$8)`,

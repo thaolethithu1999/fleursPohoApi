@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 
-const flowerService = require("./services/flowersService");
+const productService = require("./services/productService");
 const userService = require("./services/userService");
 const discountService = require("./services/discountService");
 const sizeAndPriceService = require("./services/sizePriceService");
+const enquiryService = require("./services/enquiryService");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -17,15 +18,17 @@ app.listen(8000, () => console.log("Port 8000 was ready"));
 
 // api
 // flowers
-app.get("/flowers", flowerService.getFlowers);
-app.get("/flower/:id", flowerService.getFlowerById);
+app.get("/products", productService.getProducts);
+app.get("/product/:id", productService.getProductById);
 
 // user
 app.post("/login", userService.login);
 app.post("/user/add", userService.addUser);
 
 // discount
-app.get("/discount/:flower_id", discountService.getDiscountByFlowerId);
+app.get("/discount/:product_id", discountService.getDiscountByFlowerId);
 
 // size and price
-app.get("/sizeAndPrice/:flower_id", sizeAndPriceService.getSizeAndPriceByFlowerId);
+app.get("/sizeAndPrice/:product_id", sizeAndPriceService.getSizeAndPriceByFlowerId);
+//enquiry
+app.post("/enquiry/add", enquiryService.addEnquiry);
