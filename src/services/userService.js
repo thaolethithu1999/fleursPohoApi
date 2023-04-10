@@ -1,11 +1,36 @@
 const client = require("../db");
+const { userError } = require("../errorList");
 
 const login = (req, res) => {
     try {
+        // console.log("login work");
         const { username, password } = req.body;
+        // console.log(req.body);
+        // console.log(username, password);
         client.query(`select * from users where username=$1 and password=$2`, [username, password], (err, data) => {
+            // console.log(err, data);
+            if (err)  throw err;
+            if(data.rows.length < 1) {
+                res.status(200).json({ err: userError.USER_NOT_FOUND, user: []})
+            } else {
+                res.status(200).json({ err: null, user: data.rows[0] });
+            }
+        });
+    } catch (error) {
+        res.status(500).json({ err: error.message, user: null }); 
+    }
+}
+
+const getUserById = (req, res) => {
+    try {
+        console.log(req.params);
+        let {id} = req.params;
+        client.query(`select * from users where id=$1`, [id], (err, data) => {
             if (err) throw err;
-            res.status(500).json({ err: null, user: data.rows[0] });
+            console.log(data);
+            if(data.rows.length > 0) {
+                res.status(200).json({ err: null, user: data.rows[0]});
+            }
         });
     } catch (error) {
         res.status(500).json({ err: error.message, user: null }); 
@@ -55,5 +80,7 @@ const editUser = (req, res) => {
 
 module.exports = {
     login,
-    addUser
+    getUserById,
+    addUser,
+    editUser,
 };

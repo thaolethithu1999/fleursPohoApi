@@ -24,6 +24,7 @@ app.get("/product/:id", productService.getProductById);
 // user
 app.post("/login", userService.login);
 app.post("/user/add", userService.addUser);
+app.get("/user/:id", userService.getUserById);
 
 // discount
 app.get("/discount/:product_id", discountService.getDiscountByFlowerId);
