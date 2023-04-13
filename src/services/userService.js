@@ -23,11 +23,11 @@ const login = (req, res) => {
 
 const getUserById = (req, res) => {
     try {
-        console.log(req.params);
+        // console.log(req.params);
         let {id} = req.params;
         client.query(`select * from users where id=$1`, [id], (err, data) => {
             if (err) throw err;
-            console.log(data);
+            // console.log(data);
             if(data.rows.length > 0) {
                 res.status(200).json({ err: null, user: data.rows[0]});
             }

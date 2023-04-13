@@ -7,6 +7,7 @@ const userService = require("./services/userService");
 const discountService = require("./services/discountService");
 const sizeAndPriceService = require("./services/sizePriceService");
 const enquiryService = require("./services/enquiryService");
+const packagingService = require("./services/packagingService");
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,5 +32,10 @@ app.get("/discount/:product_id", discountService.getDiscountByFlowerId);
 
 // size and price
 app.get("/sizeAndPrice/:product_id", sizeAndPriceService.getSizeAndPriceByFlowerId);
-//enquiry
+
+// enquiry
 app.post("/enquiry/add", enquiryService.addEnquiry);
+
+// packaging
+app.get("/packaging", packagingService.getPackList);
+
